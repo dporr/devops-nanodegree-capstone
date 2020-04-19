@@ -5,7 +5,7 @@ FROM python:3.7.3-stretch
 WORKDIR /app
 ## Step 2:
 # Copy source code to working directory
-COPY . app.py /app/
+COPY deployment/ /app/
 
 ## Step 3:
 # Install packages from requirements.txt

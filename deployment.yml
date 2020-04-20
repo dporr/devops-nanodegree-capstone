@@ -21,7 +21,7 @@ spec:
         app: capstone-dporr
     spec:
       containers:
-      - image: dporr/capstone:22
+      - image: dporr/capstone:30
         imagePullPolicy: Always
         name: capstone-dporr
         ports:

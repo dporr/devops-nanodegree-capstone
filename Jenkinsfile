@@ -40,6 +40,7 @@ pipeline {
                withAWS(credentials: 'eks-cli', region: 'us-east-2') {
                  sh 'aws eks --region us-east-2 update-kubeconfig --name eks-capstone'
                  sh 'kubectl  cluster-info --kubeconfig $HOME/.kube/config'
+		 sh 'kubectl apply -f deployment.yml -f service.yml'
                }
             }
         }

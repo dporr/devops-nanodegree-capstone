@@ -35,9 +35,12 @@ pipeline {
             }
 	  }
 	}
-        stage('Deploy') {
+        stage('EKS deploy') {
             steps {
-                echo 'Deploying....'
+               withAWS(credentials: 'eks-cli', region: 'us-east-2') {
+                 sh "aws eks --region us-east-2 update-kubeconfig --name eks-capstone"
+                 sh 'kubectl  cluster-info
+               }
             }
         }
     }

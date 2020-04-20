@@ -6,7 +6,7 @@ pipeline {
 		parallel {
 			stage('Lint python code') {
 			  steps {
-			   sh 'pylint --disable=R,C,W1203,W1202 deployment/*.py'
+			   sh 'pylint3 --disable=R,C,W1203,W1202 deployment/*.py'
 			  }
 			}
 			stage('Scan Dockerfile') {

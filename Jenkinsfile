@@ -22,15 +22,17 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 script{
-			docker.build registry + ":$BUILD_NUMBER"
+			dockerImage =  docker.build registry + ":$BUILD_NUMBER"
 		}
 	    }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
+        stage('Upload to registry') {
+            script {
+      		docker.withRegistry( '', registryCredential ) {
+        	dockerImage.push()
+      	       }
             }
-        }
+	}
         stage('Deploy') {
             steps {
                 echo 'Deploying....'

@@ -1,4 +1,8 @@
 pipeline {
+    environment {
+    	registry = "dporr/capstone"
+    	registryCredential = 'dockerhub'
+    }
     agent any
     stages {
 	stage('Linting'){
@@ -15,10 +19,11 @@ pipeline {
 			}
 		}
 	}
-        stage('Build') {
+        stage('Build Docker image') {
             steps {
-                echo 'Building..'
-            }
+                script{
+			docker.build registry + ":$BUILD_NUMBER"
+		}
         }
         stage('Test') {
             steps {

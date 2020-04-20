@@ -1,12 +1,6 @@
 pipeline {
     agent any
     stages {
-	stage('setup'){
-		steps{
-			sh 'pip3 install -r deployment/requirements.txt'
-		}
-
-	}
 	stage('Linting'){
 		parallel {
 			stage('Lint python code') {
